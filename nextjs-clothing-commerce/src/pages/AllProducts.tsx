@@ -1,61 +1,25 @@
 'use client'
 import React from 'react'
-import Navbar from '@/Components/Navbar';
-import Footer from '@/Components/Footer';
-
+import Navbar from './Components/Navbar';
+import Footer from './Components/Footer';
+import images from './data'
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 const Allproducts = () => {
-    
-const images = [
-    {
-        Name: 'Shirt',
-        Price: 200,
-        src: '/pic1.png',
+
+const router = useRouter();
+
+const navigateToDestination = (name:string,src:string,price:number) => {
+  router.push({
+    pathname: '/ViewProduct',
+    query: {
+      name: name,
+      src: src,
+      price: price,
     },
-    {
-        Name: 'Shalwar Qameez',
-        Price: 300,
-        src: '/pic2.png',
-    },
-    {
-        Name: 'Cameron Sash Tie Dress',
-        Price: 300,
-        src: '/pic3.png',
-    },
-    {
-        Name: 'Shalwar Qameez',
-        Price: 300,
-        src: '/pic2.png',
-    },
-    {
-        Name: 'Cameron Sash Tie Dress',
-        Price: 300,
-        src: '/pic3.png',
-    },
-    {
-        Name: 'Shirt',
-        Price: 200,
-        src: '/pic1.png',
-    },
-    {
-        Name: 'Cameron Sash Tie Dress',
-        Price: 300,
-        src: '/pic3.png',
-    },
-    {
-        Name: 'Shirt',
-        Price: 200,
-        src: '/pic1.png',
-    },
-    {
-        Name: 'Shalwar Qameez',
-        Price: 300,
-        src: '/pic2.png',
-    },
-    
-  
-]
+  });
+};
 
 const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -81,7 +45,8 @@ const nextImage = () => {
             &#8249;
             </button>
             {images.slice(currentIndex, currentIndex + 4).map((image, index) => (
-            <div className="w-full h-full transition-transform transform-gpu hover:scale-110" key={index}>
+            <div className="w-full h-full transition-transform transform-gpu hover:scale-110" key={index}
+            onClick={()=>{navigateToDestination(image.Name,image.src,image.Price)}}>
             <img
                 key={index}
                 src={image.src}
