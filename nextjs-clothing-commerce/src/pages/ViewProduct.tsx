@@ -1,11 +1,12 @@
 import Footer from './Components/Footer'
 import Navbar from './Components/Navbar'
 import React from 'react'
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addItem, subtractItem } from '../redux/actions';
+import { addItem} from '../redux/actions';
+import { toast } from 'react-hot-toast';
+
 //Apply redux
 
 const ViewProduct = () => {
@@ -41,6 +42,32 @@ const ViewProduct = () => {
     if(quantity > 1)
         setQuantity(quantity-1);
   }
+
+  const addToCart = () => {
+    // if Signin 
+    let cartData = JSON.parse(sessionStorage.getItem('cart') || '[]');
+    let check = true;  
+    cartData = cartData.map((data:any) => {
+      if (data.name === Product.name) {
+        check = false;
+        data.quantity += quantity;
+      }
+      return data;
+    });
+  
+    if (check) {
+      cartData.push(Product);
+    }
+    sessionStorage.setItem('cart', JSON.stringify(cartData));
+    toast.success('Item Successfully add to Cart', {
+      duration: 3000, // Duration in milliseconds
+      position: 'bottom-right', // Toast position
+      style: {backgroundColor:'black',color:'white'},
+      icon: '🛒', // Custom icon
+    });
+    // else navigate to Login/SignUp
+    
+  }
   
 
   return (
@@ -49,10 +76,10 @@ const ViewProduct = () => {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(1, 1fr 4fr 3fr)', gridAutoRows: 'minmax(450px,auto)', }}
       className='mt-6'>
         <div className='mt-10'>
-            <Image src={Product.src} alt="Error" width={120} height={100} style={{ display: 'flex' }} />
+            <img src={Product.src} alt="Error" width={120} height={100} style={{ display: 'flex' }} />
         </div>
         <div className='my-10' style={{}}>
-            <Image src={Product.src} alt="Error" width={500} height={200} style={{ display: 'flex',width:'100%',height:'100%' }} />
+            <img src={Product.src} alt="Error" width={500} height={200} style={{ display: 'flex',width:'100%',height:'100%' }} />
         </div>
         <div className="my-10 mr-20 ml-10 pt-12"> 
             <div className='font-bold '>{Product.name}</div>
@@ -63,9 +90,9 @@ const ViewProduct = () => {
               <span>{quantity}</span>
               <button onClick={()=>increment()} type="button" className='px-2 py-0 bg-gray-300 hover:bg-gray-400 rounded-xl mx-2'>+</button>
             </div>
-            <div className='mt-8'>
-              <span className='bg-zinc-900 hover:bg-black p-4 py-4 px-4' onClick= {()=>dispatch(addItem(Product))}>
-                  <Image src="/WhiteCart.png" alt="Error" width={30} height={40} style={{ display: 'inline-block' }} />
+            <div className='mt-8' onClick={()=>addToCart()}>
+              <span className='bg-zinc-900 hover:bg-black p-4 py-4 px-4' onClick= {()=>dispatch(addItem(Product.name))}>
+                  <img src="/WhiteCart.png" alt="Error" width={30} height={40} style={{ display: 'inline-block' }} />
                   <span className='text-white mx-4'>Add to Cart</span>
               </span>
               <span className='font-bold mx-4'>Rs: {Product.price}</span>
