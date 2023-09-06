@@ -82,7 +82,7 @@ const ViewProduct = () => {
                   <Image src="/WhiteCart.png" alt="Error" width={30} height={40} style={{ display: 'inline-block' }} />
                   <span className='text-white mx-4'>Add to Cart</span>
               </span>
-              <span className='font-bold mx-4'>Rs: {Product.price}</span>
+              <span className='font-bold mx-4'>Rs {Product.price}</span>
             </div>
         </div>
       </div>
