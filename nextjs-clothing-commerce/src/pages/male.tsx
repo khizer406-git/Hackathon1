@@ -8,7 +8,7 @@ import { useSelector} from 'react-redux';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
-const male = () => {
+const Male = () => {
 
 const [currentIndex, setCurrentIndex] = useState(0);
 const [length,setlength] = useState(0);
@@ -94,4 +94,4 @@ const nextImage = () => {
   )
 }
 
-export default male;
+export default Male;

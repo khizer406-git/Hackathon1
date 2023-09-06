@@ -8,7 +8,7 @@ import { useSelector} from 'react-redux';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
-const kids = () => {
+const Kids = () => {
 
 const [currentIndex, setCurrentIndex] = useState(0);
 const [length,setlength] = useState(0);
@@ -94,4 +94,4 @@ const nextImage = () => {
   )
 }
 
-export default kids;
+export default Kids;
