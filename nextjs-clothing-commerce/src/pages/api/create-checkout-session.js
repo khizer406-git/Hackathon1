@@ -47,12 +47,51 @@
 
 
 
+// const stripe = require('stripe')('sk_test_51NmMFgKoDtYYgFZ6FytavdgckfeAogUvdJrpkfOSCljp7IqbY8Rhjm00DG0cBrF0e8oeUOXnHF9g8SUUDNGQ8M1100t6oIV0OE');
+// const cors = require('cors');
+
+// module.exports = async (req, res) => {
+//   // Enable CORS for all routes by using the cors middleware
+//   cors()(req, res, () => {
+//     try {
+//       const { products } = req.body; // Assuming req.body.products is an array of products
+//       const lineItems = products.map((product) => {
+//         return {
+//           price_data: {
+//             currency: 'pkr',
+//             product_data: {
+//               name: product.name, // Use the product name
+//               // images: []
+//             },
+//             unit_amount: product.price * 100, // Convert price to cents
+//           },
+//           quantity: product.quantity,
+//         };
+//       });
+
+//       const session = await stripe.checkout.sessions.create({
+//         payment_method_types: ['card'],
+//         line_items: lineItems, // Use the line items array
+//         mode: 'payment',
+//         success_url: '',
+//         cancel_url: '/cart',
+//       });
+
+//       res.json({ url: session.url });
+//     } catch (error) {
+//       console.error('Error creating Checkout session:', error);
+//       res.status(500).json({ error: 'An internal server error occurred.' });
+//     }
+//   });
+// };
+
+
 const stripe = require('stripe')('sk_test_51NmMFgKoDtYYgFZ6FytavdgckfeAogUvdJrpkfOSCljp7IqbY8Rhjm00DG0cBrF0e8oeUOXnHF9g8SUUDNGQ8M1100t6oIV0OE');
 const cors = require('cors');
 
 module.exports = async (req, res) => {
-  // Enable CORS for all routes by using the cors middleware
-  cors()(req, res, () => {
+  // Wrap the code in an asynchronous function
+  async function createCheckoutSession() {
     try {
       const { products } = req.body; // Assuming req.body.products is an array of products
       const lineItems = products.map((product) => {
@@ -73,8 +112,8 @@ module.exports = async (req, res) => {
         payment_method_types: ['card'],
         line_items: lineItems, // Use the line items array
         mode: 'payment',
-        success_url: '',
-        cancel_url: '/cart',
+        success_url: 'http://localhost:3000',
+        cancel_url: 'http://localhost:3000/cart',
       });
 
       res.json({ url: session.url });
@@ -82,5 +121,8 @@ module.exports = async (req, res) => {
       console.error('Error creating Checkout session:', error);
       res.status(500).json({ error: 'An internal server error occurred.' });
     }
-  });
+  }
+
+  // Enable CORS for all routes by using the cors middleware
+  cors()(req, res, createCheckoutSession);
 };
