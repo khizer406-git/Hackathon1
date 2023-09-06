@@ -112,8 +112,8 @@ module.exports = async (req, res) => {
         payment_method_types: ['card'],
         line_items: lineItems, // Use the line items array
         mode: 'payment',
-        success_url: 'http://localhost:3000',
-        cancel_url: 'http://localhost:3000/cart',
+        success_url: 'https://hackathon1-1-khizer406-git.vercel.app/cart',
+        cancel_url: 'https://hackathon1-1-khizer406-git.vercel.app/',
       });
 
       res.json({ url: session.url });
