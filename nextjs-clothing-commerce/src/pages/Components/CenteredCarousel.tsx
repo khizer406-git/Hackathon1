@@ -18,7 +18,7 @@ import { useState } from 'react';
         Price: 300,
         src: '/pic3.png',
     },
-    {
+    { 
         Name: 'Shalwar Qameez',
         Price: 300,
         src: '/pic2.png',

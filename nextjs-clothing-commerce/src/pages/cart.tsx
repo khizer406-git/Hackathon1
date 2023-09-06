@@ -5,13 +5,14 @@ import Navbar from './Components/Navbar'
 import {useDispatch } from 'react-redux';
 import { subtractItem} from '../redux/actions';
 import { toast } from 'react-hot-toast';
-
+import { useUser } from "@clerk/nextjs";
 const Cart = () => {
 
   const dispatch = useDispatch();
   const [item,setitem] = useState([]);
   const [total,setTotal] = useState(0);
-  
+  const { isSignedIn, user } = useUser();
+
   useEffect(() => {
     let cartData = sessionStorage.getItem('cart');
     var existingCart = cartData ? JSON.parse(cartData) : [];
@@ -24,9 +25,7 @@ const Cart = () => {
     const updatedProducts:any = item.map((p: any) =>
       p === product ? { ...p, quantity: p.quantity + 1 } : p
     );
-    console.log(total)
     setTotal((prevTotal)=>prevTotal + parseFloat(product.price))
-    console.log(total)
     setitem(updatedProducts);
     product.quantity += 1;
   }
@@ -42,6 +41,32 @@ const Cart = () => {
     }
   }
 
+  const handleCheckout = async () => {
+    try {
+        const order = item.map((p:any)=>{
+          const {src, ...rest} = p; 
+          return rest;
+        })
+        const response = await fetch('http://localhost:3001/api/create-checkout-session', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          products: order,
+        }),
+      });
+      const data = await response.json();
+      window.location.href = data.url
+    } catch (error) {
+        toast.error("Error in proceeding to payment page",{
+        duration: 3000, // Duration in milliseconds
+        position: 'bottom-right', // Toast position
+        style: {backgroundColor:'black',color:'white'},
+      })
+    }
+  };
+
   const handleCheckOut = () => {
     if(total === 0){
       toast.error("Please add Products in Cart",{
@@ -50,8 +75,14 @@ const Cart = () => {
         style: {backgroundColor:'black',color:'white'},
       })
     }
-    else{
-      // navigate to stripe payment
+    if(!isSignedIn)
+        toast.error("Please Sign In",{
+          duration: 3000, // Duration in milliseconds
+          position: 'bottom-right', // Toast position
+          style: {backgroundColor:'black',color:'white'},
+        })
+    if(total !== 0 && isSignedIn){
+        handleCheckout();
     }
   }
 
@@ -62,7 +93,6 @@ const Cart = () => {
     setitem(updatedProducts);
     sessionStorage.setItem('cart', JSON.stringify(updatedProducts));
     product.quantity += 1;
-    console.log(updatedProducts)
     dispatch(subtractItem());
   }  
 

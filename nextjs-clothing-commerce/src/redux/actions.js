@@ -6,3 +6,8 @@ export const addItem = (name) => ({
 export const subtractItem = () => ({
   type: 'DECREMENT',
 });
+
+export const search = (data) => (  {
+  payload: data,
+  type: 'SEARCH'
+})

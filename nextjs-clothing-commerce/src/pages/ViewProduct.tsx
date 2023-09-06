@@ -3,17 +3,19 @@ import Navbar from './Components/Navbar'
 import React from 'react'
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addItem} from '../redux/actions';
 import { toast } from 'react-hot-toast';
-
-//Apply redux
+import { useAuth } from "@clerk/nextjs";
+import { useUser } from "@clerk/nextjs";
 
 const ViewProduct = () => {
 
   const dispatch = useDispatch();
   const router = useRouter();
   const [quantity,setQuantity] = useState(1);
+  const {userId } = useAuth(); 
+  const { isSignedIn, user } = useUser();
   
   const Product = {
     name : router.query.name || '',
@@ -22,18 +24,6 @@ const ViewProduct = () => {
     quantity : quantity,
   }
   
-  const navigateToDestination = () => {
-      router.push({
-        pathname: '/cart',
-        query: {
-        name: Product.name,
-        src: Product.src,
-        price: Product.price,
-        quantity: quantity,
-        },
-    })
-  };
-
   const increment = () => {
     setQuantity(quantity+1);
   }
@@ -44,30 +34,29 @@ const ViewProduct = () => {
   }
 
   const addToCart = () => {
-    // if Signin 
-    let cartData = JSON.parse(sessionStorage.getItem('cart') || '[]');
-    let check = true;  
-    cartData = cartData.map((data:any) => {
-      if (data.name === Product.name) {
-        check = false;
-        data.quantity += quantity;
-      }
-      return data;
-    });
-  
-    if (check) {
-      cartData.push(Product);
-    }
-    sessionStorage.setItem('cart', JSON.stringify(cartData));
-    toast.success('Item Successfully add to Cart', {
-      duration: 3000, // Duration in milliseconds
-      position: 'bottom-right', // Toast position
-      style: {backgroundColor:'black',color:'white'},
-      icon: '🛒', // Custom icon
-    });
-    // else navigate to Login/SignUp
+      let cartData = JSON.parse(sessionStorage.getItem('cart') || '[]');
+      let check = true;  
+      cartData = cartData.map((data:any) => {
+        if (data.name === Product.name) {
+          check = false;
+          data.quantity += quantity;
+        }
+        return data;
+      });
     
-  }
+      if (check) 
+        cartData.push(Product);
+      
+      sessionStorage.setItem('cart', JSON.stringify(cartData));
+      toast.success('Item Successfully add to Cart', {
+        duration: 3000, // Duration in milliseconds
+        position: 'bottom-right', // Toast position
+        style: {backgroundColor:'black',color:'white'},
+        icon: '🛒', // Custom icon
+      });
+
+    }
+  
   
 
   return (
@@ -99,7 +88,6 @@ const ViewProduct = () => {
             </div>
         </div>
       </div>
-      <button type="button" onClick={()=>navigateToDestination()}>cartItems</button>
       <Footer/>
     </div>
   )

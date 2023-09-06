@@ -4,6 +4,7 @@ import React, { useEffect } from 'react'
 import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
 import images from './data'
+import { useSelector} from 'react-redux';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
@@ -11,8 +12,23 @@ const male = () => {
 
 const [currentIndex, setCurrentIndex] = useState(0);
 const [length,setlength] = useState(0);
-
+const [data,setData] = useState(images);
+const search = useSelector((state:any) => state.search);
 const router = useRouter();
+
+useEffect(() => {
+  console.log(search);
+  setData(()=>images)
+  setData((prevData) => {
+    const newData = [...prevData]; 
+    if (search && prevData) {
+      return newData.filter((data) =>
+        data.Name.toLowerCase().includes(search)
+      );
+    }
+    return images; 
+  });
+}, [search]);
 
   const navigateToDestination = (name:string,src:string,price:number) => {
     router.push({
@@ -26,8 +42,9 @@ const router = useRouter();
   };
 
 useEffect(()=>{
-  setlength(images.filter(image => image.gender === 'male').length);
-},[])
+  setlength(data.filter(image => image.gender === 'male').length);
+},[data])
+
 const prevImage = () => {
   setCurrentIndex((prevIndex) => Math.max(prevIndex - 4, 0));
 };
@@ -49,7 +66,7 @@ const nextImage = () => {
             >
             &#8249;
             </button>
-            {images.filter(image => image.gender === 'male').slice(currentIndex, currentIndex + 4).map((image, index) => (
+            {data.filter(image => image.gender === 'male').slice(currentIndex, currentIndex + 4).map((image, index) => (
             <div className="w-full h-full transition-transform transform-gpu hover:scale-110" key={index}
             onClick={()=>{navigateToDestination(image.Name,image.src,image.Price)}}>
             <img
@@ -70,11 +87,8 @@ const nextImage = () => {
             </button>
         </div>
         <div className="flex mt-4">
-            
-            
         </div>
         </div>
-  
       <Footer />
     </div>
   )

@@ -14,7 +14,7 @@ const HomePage = () => {
                     <div>beat your outfit as long as you wear</div>
                     <div> Dine Outfits</div>
                     <div className='mt-8'>
-                        <a href="http://">
+                        <a href="http://localhost:3000/AllProducts">
                             <span className='bg-gray-600 p-4 py-4 px-4' >
                                 <Image src="/Cart.png" alt="Error" width={30} height={40} style={{ display: 'inline-block' }} />
                                 <span className='text-white mx-4'>Start Shopping</span>
@@ -51,8 +51,6 @@ const HomePage = () => {
 
             <div className="text-center text-blue-600 mt-14"> Products</div>
             <div className="text-center font-bold my-0 text-2xl">Check What we have</div>
-
-
             <CenteredCarousel />
         </div>
     )

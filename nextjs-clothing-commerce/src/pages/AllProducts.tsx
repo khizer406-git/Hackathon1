@@ -3,34 +3,54 @@ import React from 'react'
 import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
 import images from './data'
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { useSelector} from 'react-redux';
 
 const Allproducts = () => {
-
-const router = useRouter();
-
-const navigateToDestination = (name:string,src:string,price:number) => {
-  router.push({
-    pathname: '/ViewProduct',
-    query: {
-      name: name,
-      src: src,
-      price: price,
-    },
-  });
-};
-
-const [currentIndex, setCurrentIndex] = useState(0);
-
-const prevImage = () => {
-  setCurrentIndex((prevIndex) => Math.max(prevIndex - 4, 0));
-};
-
-const nextImage = () => {
-  setCurrentIndex((prevIndex) => Math.min(prevIndex + 4, images.length - 4));
-};
-
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [length,setlength] = useState(0);
+  const [data,setData] = useState(images);
+  const search = useSelector((state:any) => state.search);
+  const router = useRouter();
+  
+  useEffect(() => {
+    console.log(search);
+    setData(()=>images)
+    setData((prevData) => {
+      const newData = [...prevData]; 
+      if (search && prevData) {
+        return newData.filter((data) =>
+          data.Name.toLowerCase().includes(search)
+        );
+      }
+      return images; 
+    });
+  }, [search]);
+  
+    const navigateToDestination = (name:string,src:string,price:number) => {
+      router.push({
+        pathname: '/ViewProduct',
+        query: {
+          name: name,
+          src: src,
+          price: price,
+        },
+      });
+    };
+  
+  useEffect(()=>{
+    setlength(data.length);
+    console.log(data.length)
+  },[data])
+  
+  const prevImage = () => {
+    setCurrentIndex((prevIndex) => Math.max(prevIndex - 4, 0));
+  };
+  
+  const nextImage = () => {
+    setCurrentIndex((prevIndex) => Math.min(prevIndex + 4, length - 4));
+  };
 
   return (
     <div className="my-14 mx-24" >
@@ -44,7 +64,7 @@ const nextImage = () => {
             >
             &#8249;
             </button>
-            {images.slice(currentIndex, currentIndex + 4).map((image, index) => (
+            {data.slice(currentIndex, currentIndex + 4).map((image, index) => (
             <div className="w-full h-full transition-transform transform-gpu hover:scale-110" key={index}
             onClick={()=>{navigateToDestination(image.Name,image.src,image.Price)}}>
             <img
@@ -58,18 +78,15 @@ const nextImage = () => {
             ))}
             <button
             onClick={nextImage}
-            disabled={currentIndex + 4 >= images.length}
-            className={`px-4 py-2 ${currentIndex + 4 >= images.length ? 'bg-gray-300 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-700 text-white'} rounded`}
+            disabled={currentIndex + 4 >= length}
+            className={`px-4 py-2 ${currentIndex + 4 >= length ? 'bg-gray-300 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-700 text-white'} rounded`}
             >
             &#8250;
             </button>
         </div>
         <div className="flex mt-4">
-            
-            
         </div>
         </div>
-  
       <Footer />
     </div>
   )
