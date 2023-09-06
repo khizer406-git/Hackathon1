@@ -1,5 +1,6 @@
 "use client";
 import Image from 'next/image';
+import Link from 'next/link';
 import {useEffect,useState} from 'react'
 import { useSelector,useDispatch } from 'react-redux';
 import {SignOutButton,SignInButton  } from "@clerk/nextjs";
@@ -60,10 +61,10 @@ export default function Navbar() {
             <div className="font-extrabold text-2xl">Dine Market</div>
           </a>         
         <nav className="flex justify-between flex-row space-x-4 ">
-          <a href="/female"><div className="font-light w-full h-full transition-transform transform-gpu hover:scale-110">Female</div></a>
-          <a href="/male"><div className="font-light transition-transform transform-gpu hover:scale-110">Male</div></a>
-          <a href="/kids"><div className="font-light transition-transform transform-gpu hover:scale-110">Kids</div></a>
-          <a href="/AllProducts"><div className="font-light transition-transform transform-gpu hover:scale-110">All Products</div></a>
+        <Link href="/female"><div className="font-light w-full h-full transition-transform transform-gpu hover:scale-110">Female</div></Link>
+        <Link href="/male"><div className="font-light transition-transform transform-gpu hover:scale-110">Male</div></Link>
+        <Link href="/kids"><div className="font-light transition-transform transform-gpu hover:scale-110">Kids</div></Link>
+        <Link href="/AllProducts"><div className="font-light transition-transform transform-gpu hover:scale-110">All Products</div></Link>
         </nav>
         <nav className="flex justify-between items-center flex-row space-x-2">
           <div className="border border-gray-300 px-2 py-0 rounded-md focus:outline-none focus:border-blue-500 flex items-center bg-white">
