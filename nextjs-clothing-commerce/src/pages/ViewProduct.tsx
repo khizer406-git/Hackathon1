@@ -8,6 +8,7 @@ import { addItem} from '../redux/actions';
 import { toast } from 'react-hot-toast';
 import { useAuth } from "@clerk/nextjs";
 import { useUser } from "@clerk/nextjs";
+import Image from 'next/image';
 
 const ViewProduct = () => {
 
@@ -54,10 +55,7 @@ const ViewProduct = () => {
         style: {backgroundColor:'black',color:'white'},
         icon: '🛒', // Custom icon
       });
-
     }
-  
-  
 
   return (
     <div className="my-14 mx-24" >
@@ -65,10 +63,10 @@ const ViewProduct = () => {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(1, 1fr 4fr 3fr)', gridAutoRows: 'minmax(450px,auto)', }}
       className='mt-6'>
         <div className='mt-10'>
-            <img src={Product.src} alt="Error" width={120} height={100} style={{ display: 'flex' }} />
+            <Image src={Product.src} alt="Error" width={120} height={100} style={{ display: 'flex' }} />
         </div>
         <div className='my-10' style={{}}>
-            <img src={Product.src} alt="Error" width={500} height={200} style={{ display: 'flex',width:'100%',height:'100%' }} />
+            <Image src={Product.src} alt="Error" width={500} height={200} style={{ display: 'flex',width:'100%',height:'100%' }} />
         </div>
         <div className="my-10 mr-20 ml-10 pt-12"> 
             <div className='font-bold '>{Product.name}</div>

@@ -1,5 +1,5 @@
 'use client'
-
+import Image from 'next/image';
 import { useState } from 'react';
 
   const images = [
@@ -58,11 +58,12 @@ function CenteredCarousel() {
         </button>
         {images.slice(currentIndex, currentIndex + 3).map((image, index) => (
           <div className="w-full h-full transition-transform transform-gpu hover:scale-110" key={index}>
-          <img
+          <Image
             key={index}
             src={image.src}
             alt={`Image ${currentIndex + index + 1}`}
-            // className="w-full h-full transition-transform transform-gpu hover:scale-110"
+            width={1000}
+            height={1000}
           />
           <div className='font-bold'>{image.Name}</div>
           <div className='font-bold'>${image.Price}</div>

@@ -3,6 +3,7 @@ import React from 'react'
 import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
 import images from './data'
+import Image from 'next/image';
 import { useState,useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useSelector} from 'react-redux';
@@ -67,10 +68,12 @@ const Allproducts = () => {
             {data.slice(currentIndex, currentIndex + 4).map((image, index) => (
             <div className="w-full h-full transition-transform transform-gpu hover:scale-110" key={index}
             onClick={()=>{navigateToDestination(image.Name,image.src,image.Price)}}>
-            <img
+            <Image
                 key={index}
                 src={image.src}
                 alt={`Image ${currentIndex + index + 1}`}
+                width={300}
+                height={400}
             />
             <div className='font-bold'>{image.Name}</div>
             <div className='font-bold'>${image.Price}</div>

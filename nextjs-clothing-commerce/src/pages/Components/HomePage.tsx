@@ -26,11 +26,11 @@ const HomePage = () => {
                     </div>
                 </div>
                 <div className="mt-8">
-                    <img
+                    <Image
                         src="/Girl.png"
                         alt="Error"
-                        width={100}
-                        height={200}
+                        width={1000}
+                        height={1000}
                         style={{ display: 'flex', width: '100%', height: '100%' }}
                     />
                 </div>
@@ -42,11 +42,11 @@ const HomePage = () => {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(1, 2fr 1fr 1fr)' }}>
 
                 <div>
-                    <img src="/Promo1.png" alt="" style={{ height: '45%', width: '90%', marginLeft: '5%', marginBottom: '6%' }} />
-                    <img src="/promo2.png" alt="" style={{ height: '45%', width: '90%', marginLeft: '5%', marginTop: '6%' }} />
+                    <Image src="/Promo1.png" alt="" width={1000} height={1000} style={{ height: '45%', width: '90%', marginLeft: '5%', marginBottom: '6%' }} />
+                    <Image src="/promo2.png" alt="" width={1000} height={1000} style={{ height: '45%', width: '90%', marginLeft: '5%', marginTop: '6%' }} />
                 </div>
-                <img src="/promo3.png" alt="" style={{ height: '100%', width: '95%' }} />
-                <img src="/promo4.png" alt="" style={{ height: '100%', width: '95%', marginLeft: '5%' }} />
+                <Image src="/promo3.png" alt="" width={1000} height={1000} style={{ height: '100%', width: '95%' }} />
+                <Image src="/promo4.png" alt="" width={1000} height={1000} style={{ height: '100%', width: '95%', marginLeft: '5%' }} />
             </div>
 
             <div className="text-center text-blue-600 mt-14"> Products</div>

@@ -6,6 +6,7 @@ import {useDispatch } from 'react-redux';
 import { subtractItem} from '../redux/actions';
 import { toast } from 'react-hot-toast';
 import { useUser } from "@clerk/nextjs";
+import Image from 'next/image';
 const Cart = () => {
 
   const dispatch = useDispatch();
@@ -106,7 +107,7 @@ const Cart = () => {
           <div key={Math.random()}>
             <div className='bg-gray-100 mx-24 my-4' style={{display: 'grid', gridTemplateColumns: 'repeat(1, 2fr 1fr 1fr 1fr)', gridAutoRows: 'minmax(0px,auto)',alignItems:'center'}}>
               <span className='mx-4 my-2' style={{padding:0}}>
-                <img src={data.src} alt="Error" style={{width:100,height:100,borderRadius:50, display:'inline',marginRight:20}}/>
+                <Image src={data.src} alt="Error" width={1000} height={1000} style={{width:100,height:100,borderRadius:50, display:'inline',marginRight:20}}/>
                 <span>{data.name}</span>
               </span>
               <span>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
 import images from './data';
+import Image from 'next/image';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 
@@ -82,10 +83,12 @@ const Female = () => {
                   );
                 }}
               >
-                <img
+                <Image
                   key={index}
                   src={image.src}
                   alt={`Image ${currentIndex + index + 1}`}
+                  width={300}
+                  height={400}
                 />
                 <div className="font-bold">{image.Name}</div>
                 <div className="font-bold">${image.Price}</div>
