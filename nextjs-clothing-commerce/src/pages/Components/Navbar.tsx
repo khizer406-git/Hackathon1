@@ -50,6 +50,7 @@ export default function Navbar() {
         icon: '🛒', // Custom icon
       });
       sessionStorage.setItem('reg','')
+      sessionStorage.setItem('cart','')
     }
     // setCheck((value)=>value+1)
     check+=1
