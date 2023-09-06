@@ -70,7 +70,7 @@ const nextImage = () => {
             {data.filter(image => image.gender === 'kids').slice(currentIndex, currentIndex + 4).map((image, index) => (
             <div className="w-full h-full transition-transform transform-gpu hover:scale-110" key={index}
             onClick={()=>{navigateToDestination(image.Name,image.src,image.Price)}}>
-            <img
+            <Image
                 key={index}
                 src={image.src}
                 alt={`Image ${currentIndex + index + 1}`}

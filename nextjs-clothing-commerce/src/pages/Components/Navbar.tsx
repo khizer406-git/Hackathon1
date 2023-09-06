@@ -67,7 +67,7 @@ export default function Navbar() {
         </nav>
         <nav className="flex justify-between items-center flex-row space-x-2">
           <div className="border border-gray-300 px-2 py-0 rounded-md focus:outline-none focus:border-blue-500 flex items-center bg-white">
-            <img src="/SearchIcon.png" alt="Error" width={50} height={40} /> 
+            <Image src="/SearchIcon.png" alt="Error" width={50} height={40} /> 
           <input type="text" className="pr-48  px-1 py-0 focus:border-black-500" placeholder="What are you Looking For ?" onChange={(e)=>{handleChange(e)}} />
           </div>
           <a href="http://localhost:3000/cart">        

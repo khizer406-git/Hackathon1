@@ -117,7 +117,7 @@ const Cart = () => {
                 <button onClick={() => increment(data)} type="button" className='px-2 py-0 bg-gray-300 hover:bg-gray-400 rounded-xl mx-2'>+</button>
               </span>
               <span className='flex justify-center'>{data.quantity} x {data.price} = {data.quantity * data.price}</span>
-              <div onClick={()=>deleteProduct(data)}><button type="button"><img src="/bin.png" alt="" width={50} height={50}/>&nbsp;Delete</button></div>             
+              <div onClick={()=>deleteProduct(data)}><button type="button"><Image src="/bin.png" alt="" width={50} height={50}/>&nbsp;Delete</button></div>             
             </div>
           </div>
         )}

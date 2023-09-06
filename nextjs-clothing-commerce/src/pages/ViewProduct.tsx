@@ -79,7 +79,7 @@ const ViewProduct = () => {
             </div>
             <div className='mt-8' onClick={()=>addToCart()}>
               <span className='bg-zinc-900 hover:bg-black p-4 py-4 px-4' onClick= {()=>dispatch(addItem(Product.name))}>
-                  <img src="/WhiteCart.png" alt="Error" width={30} height={40} style={{ display: 'inline-block' }} />
+                  <Image src="/WhiteCart.png" alt="Error" width={30} height={40} style={{ display: 'inline-block' }} />
                   <span className='text-white mx-4'>Add to Cart</span>
               </span>
               <span className='font-bold mx-4'>Rs: {Product.price}</span>
