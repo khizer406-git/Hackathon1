@@ -50,7 +50,6 @@ export default function Navbar() {
         icon: '🛒', // Custom icon
       });
       sessionStorage.setItem('reg','')
-      sessionStorage.setItem('cart','')
     }
     // setCheck((value)=>value+1)
     check+=1
@@ -76,7 +75,7 @@ export default function Navbar() {
           <Link href={"/cart"}><Image src="/Cart.png" alt="Error" width={30} height={40} className="border border-gray-300 rounded-xl p-1 bg-gray-200 hover:bg-gray-300"/></Link>      
           {count?(<sup className='bg-red-500 rounded-xl text-white text-xl px-1 font-bold ' style={{marginLeft:-5}}> {count}</sup>):(null)}          
           {isSignedIn?
-          (<div className="p-2 font-bold hover:bg-gray-600" onClick={()=>sessionStorage.setItem('','cart')}><SignOutButton/></div>)
+          (<div className="p-2 font-bold hover:bg-gray-600" onClick={()=>sessionStorage.setItem('cart','')}><SignOutButton/></div>)
           :(<div className="p-2 font-bold hover:bg-blue-600"><SignInButton/></div>)}
         </nav>
       </nav>    
