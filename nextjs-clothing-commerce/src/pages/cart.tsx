@@ -48,7 +48,7 @@ const Cart = () => {
           const {src, ...rest} = p; 
           return rest;
         })
-        const response = await fetch('http://localhost:3001/api/create-checkout-session', {
+        const response = await fetch('/api/create-checkout-session', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -60,6 +60,7 @@ const Cart = () => {
       const data = await response.json();
       window.location.href = data.url
     } catch (error) {
+        console.log(error)
         toast.error("Error in proceeding to payment page",{
         duration: 3000, // Duration in milliseconds
         position: 'bottom-right', // Toast position
