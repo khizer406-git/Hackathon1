@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
-import images from './data';
+import images from './Data/data';
 import Image from 'next/image';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
@@ -10,7 +10,7 @@ const Female = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [length, setLength] = useState(0);
   const [data, setData] = useState(images);
-  const search = useSelector((state:any) => state.search);
+  const search = useSelector((state: any) => state.search);
   const router = useRouter();
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const Female = () => {
     });
   }, [search]);
 
-  const navigateToDestination = (name:any, src:any, price:any) => {
+  const navigateToDestination = (name: any, src: any, price: any) => {
     router.push({
       pathname: '/ViewProduct',
       query: {
@@ -60,11 +60,10 @@ const Female = () => {
           <button
             onClick={prevImage}
             disabled={currentIndex === 0}
-            className={`px-4 py-2 mr-2 ${
-              currentIndex === 0
+            className={`px-4 py-2 mr-2 ${currentIndex === 0
                 ? 'bg-gray-300 cursor-not-allowed'
                 : 'bg-blue-500 hover:bg-blue-700 text-white'
-            } rounded`}
+              } rounded`}
           >
             &#8249;
           </button>
@@ -97,11 +96,10 @@ const Female = () => {
           <button
             onClick={nextImage}
             disabled={currentIndex + 4 >= length}
-            className={`px-4 py-2 ${
-              currentIndex + 4 >= length
+            className={`px-4 py-2 ${currentIndex + 4 >= length
                 ? 'bg-gray-300 cursor-not-allowed'
                 : 'bg-blue-500 hover:bg-blue-700 text-white'
-            } rounded`}
+              } rounded`}
           >
             &#8250;
           </button>
