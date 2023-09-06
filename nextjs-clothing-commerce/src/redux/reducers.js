@@ -33,7 +33,6 @@
             search: action.payload
         };
         default:{
-          console.log("I am called")
           return state;}
       }
     };
