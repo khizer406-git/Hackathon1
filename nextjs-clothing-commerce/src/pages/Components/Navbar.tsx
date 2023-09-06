@@ -11,7 +11,8 @@ import { search } from '@/redux/actions';
 export default function Navbar() {
   const [count,setCount] = useState(0);
   const {isSignedIn} = useUser();
-  const [check,setCheck] = useState(0)  
+  // const [check,setCheck] = useState(0)
+  const var = 0;  
   const countloader = useSelector((state:any) => state.count);
 
   const dispatch = useDispatch();
@@ -51,7 +52,8 @@ export default function Navbar() {
       });
       sessionStorage.setItem('reg','')
     }
-    setCheck((value)=>value+1)
+    // setCheck((value)=>value+1)
+    check+=1
   }, [isSignedIn])
   
   return (
