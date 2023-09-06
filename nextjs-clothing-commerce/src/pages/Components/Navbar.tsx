@@ -72,9 +72,7 @@ export default function Navbar() {
             <Image src="/SearchIcon.png" alt="Error" width={50} height={40} /> 
           <input type="text" className="pr-48  px-1 py-0 focus:border-black-500" placeholder="What are you Looking For ?" onChange={(e)=>{handleChange(e)}} />
           </div>
-          <a href="http://localhost:3000/cart">        
-            <Image src="/Cart.png" alt="Error" width={30} height={40} className="border border-gray-300 rounded-xl p-1 bg-gray-200 hover:bg-gray-300"/>
-          </a>
+          <Link href={"/cart"}><Image src="/Cart.png" alt="Error" width={30} height={40} className="border border-gray-300 rounded-xl p-1 bg-gray-200 hover:bg-gray-300"/></Link>      
           {count?(<sup className='bg-red-500 rounded-xl text-white text-xl px-1 font-bold ' style={{marginLeft:-5}}> {count}</sup>):(null)}          
           {isSignedIn?
           (<div className="p-2 font-bold hover:bg-gray-600" onClick={()=>sessionStorage.setItem('','cart')}><SignOutButton/></div>)
