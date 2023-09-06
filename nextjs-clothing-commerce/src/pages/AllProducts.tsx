@@ -16,7 +16,6 @@ const Allproducts = () => {
   const router = useRouter();
 
   useEffect(() => {
-    console.log(search);
     setData(() => images)
     setData((prevData) => {
       const newData = [...prevData];
@@ -42,7 +41,6 @@ const Allproducts = () => {
 
   useEffect(() => {
     setlength(data.length);
-    console.log(data.length)
   }, [data])
 
   const prevImage = () => {

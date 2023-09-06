@@ -18,7 +18,6 @@ const Male = () => {
   const router = useRouter();
 
   useEffect(() => {
-    console.log(search);
     setData(() => images)
     setData((prevData) => {
       const newData = [...prevData];
