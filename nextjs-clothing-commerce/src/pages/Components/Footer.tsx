@@ -9,10 +9,10 @@ export default function Footer() {
         <div>
             <div className="grid grid-cols-4 grid-rows-auto md:grid-rows-1 gap-4 mt-14"
                 style={{ gridTemplateColumns: '2fr 1fr 1fr 1fr' }}>
-                <div>
+                <div>   
                     <div> <Image src="/DineMarket.png" alt="" width={200} height={200} style={{ display: 'inline' }} /></div>
                     <div className='mt-10 pl-2 font-semibold'>Small, artisan label that offers a thoughtfully curated collection of high quality everyday essentials made.</div>
-                    <div className='mt-2'>
+                    <div className='mt-2'>  
                         <Image src="/Facebook.png" alt="FaceBook" width={55} height={55} className='inline'/>
                         <Image src="/Twitter.png" alt="Twitter" width={50} height={50} className='inline'/>
                         <Image src="/LinkedIn.png" alt="LinkedIn" width={50} height={50} className='inline'/>

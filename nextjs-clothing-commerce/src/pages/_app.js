@@ -11,7 +11,7 @@ import { ClerkProvider } from '@clerk/nextjs';
 function MyApp({ Component, pageProps }) {
   return (
     <ClerkProvider
-      frontendApi={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
+      publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
     >
       <Provider store={store}>
         <Toaster />      
