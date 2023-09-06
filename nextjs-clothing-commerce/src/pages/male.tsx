@@ -3,7 +3,7 @@
 import React, { useEffect } from 'react'
 import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
-import images from './Data/data'
+import images from '../Data/data'
 import Image from 'next/image';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';

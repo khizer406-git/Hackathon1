@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
-import images from './Data/data';
+import images from '../Data/data';
 import Image from 'next/image';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
@@ -61,8 +61,8 @@ const Female = () => {
             onClick={prevImage}
             disabled={currentIndex === 0}
             className={`px-4 py-2 mr-2 ${currentIndex === 0
-                ? 'bg-gray-300 cursor-not-allowed'
-                : 'bg-blue-500 hover:bg-blue-700 text-white'
+              ? 'bg-gray-300 cursor-not-allowed'
+              : 'bg-blue-500 hover:bg-blue-700 text-white'
               } rounded`}
           >
             &#8249;
@@ -97,8 +97,8 @@ const Female = () => {
             onClick={nextImage}
             disabled={currentIndex + 4 >= length}
             className={`px-4 py-2 ${currentIndex + 4 >= length
-                ? 'bg-gray-300 cursor-not-allowed'
-                : 'bg-blue-500 hover:bg-blue-700 text-white'
+              ? 'bg-gray-300 cursor-not-allowed'
+              : 'bg-blue-500 hover:bg-blue-700 text-white'
               } rounded`}
           >
             &#8250;
