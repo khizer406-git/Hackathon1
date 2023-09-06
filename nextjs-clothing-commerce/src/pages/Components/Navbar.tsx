@@ -11,7 +11,6 @@ import { search } from '@/redux/actions';
 export default function Navbar() {
   const [count,setCount] = useState(0);
   const {isSignedIn} = useUser();
-  // const [check,setCheck] = useState(0)
   var check = 0;  
   const countloader = useSelector((state:any) => state.count);
 
