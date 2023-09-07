@@ -57,10 +57,10 @@ export default function Navbar() {
   
   return (
       <nav className="flex justify-between flex-row" style={{ alignItems: 'center', alignSelf: 'center' }}>
-          <a href="http://localhost:3000" className="flex items-center">
-            <Image src="/Circle.png" alt="Error" width={30} height={40} /> 
-            <div className="font-extrabold text-2xl">Dine Market</div>
-          </a>         
+        <Link href="https://hackathon1-1-khizer406-git.vercel.app/" className="flex items-center">
+          <Image src="/Circle.png" alt="Error" width={30} height={40} /> 
+          <div className="font-extrabold text-2xl">Dine Market</div>
+        </Link>         
         <nav className="flex justify-between flex-row space-x-4 ">
         <Link href="/female"><div className="font-light w-full h-full transition-transform transform-gpu hover:scale-110">Female</div></Link>
         <Link href="/male"><div className="font-light transition-transform transform-gpu hover:scale-110">Male</div></Link>
