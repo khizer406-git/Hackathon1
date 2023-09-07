@@ -43,7 +43,7 @@ const HomePage = () => {
 
                 <div>
                     <Image src="/Promo1.png" alt="" width={500} height={200} style={{ height: '45%', width: '90%', marginLeft: '5%', marginBottom: '6%' }} />
-                    <Image src="/p2.png" alt="" width={500} height={200} style={{ height: '45%', width: '90%', marginLeft: '5%', marginTop: '6%' }} />
+                    <Image src="/Promo2.png" alt="" width={500} height={200} style={{ height: '45%', width: '90%', marginLeft: '5%', marginTop: '6%' }} />
                 </div>
                 <Image src="/promo3.png" alt="" width={400} height={400} style={{ height: '100%', width: '95%' }} />
                 <Image src="/promo4.png" alt="" width={400} height={400} style={{ height: '100%', width: '95%', marginLeft: '5%' }} />
